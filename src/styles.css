@@ -1,0 +1,578 @@
+/* Basic Styles */
+
+/* Add at the very top */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* Modified font-family declarations */
+body {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.app-header {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.sidebar h4 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-title {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Fixed layout structure to prevent main container scrolling */
+html, body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling on body */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* Fixed height */
+  overflow: hidden; /* Prevent container scrolling */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease, width 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto; /* Allow sidebar to scroll if needed */
+}
+
+.sidebar h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 5px 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: transparent;
+}
+
+.sidebar ul li .sidebar-icon {
+  margin-right: 10px; /* Add margin to create space between the icon and the text */
+}
+
+/* Changed hover effect to only apply to non-active items */
+.sidebar ul li:not(.active):hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+/* Added active state styling */
+.sidebar ul li.active {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+.sidebar ul li.active .sidebar-icon {
+  color: #ffd700 !important; /* Golden color for active icons */
+}
+
+/* Changed icon hover behavior */
+.sidebar ul li:not(.active):hover .sidebar-icon {
+  color: #29dd50;
+}
+
+/* Task Container - Updated to prevent scrolling */
+.task-container {
+  margin-left: 250px;
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent scrolling on the container */
+  position: relative; /* For positioning the add task button */
+}
+
+/* Profile Container - New style for positioning profile at top right */
+.profile-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1001; /* Ensure it stays above other elements */
+}
+
+/* Header Styles */
+.app-header {
+  text-align: center;
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 10px;
+  margin-top: 20px; /* Add space for profile button */
+}
+
+/* Button Styles */
+.add-task-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.add-task-btn:hover {
+  background-color: #0056b3;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* Styling for the Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto; /* Center and add spacing */
+  width: 100%;
+  max-width: 600px; /* Limit the search bar's width */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative; /* For proper positioning of the icon */
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 20px; /* Extra padding for icon */
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Highlighted border on focus */
+}
+
+.search-bar-icon {
+  position: absolute;
+  right: 15px; /* Adjust to align with the input */
+  font-size: 20px;
+  color: #aaa; /* Gray color for the icon */
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* Task List Wrapper - Updated to allow internal scrolling */
+.task-list-wrapper {
+  flex: 1; /* Take available space */
+  margin-top: 20px;
+  margin-bottom: 80px; /* Space for the add task button */
+  overflow-y: auto; /* Allow scrolling inside this container only */
+  border-radius: 8px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Style the scrollbar */
+.task-list-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-list-wrapper::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 4px;
+}
+
+.task-list-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+.task-list-wrapper::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.task-input-container {
+  position: absolute; /* Relative to task-container */
+  bottom: 20px;
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Center it perfectly */
+  width: 300px; /* Fixed width instead of full width */
+  max-width: calc(100% - 40px); /* Ensure it fits on small screens */
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #2c2c2c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's above other elements */
+  display: flex; /* Better alignment of icon and text */
+  align-items: center;
+}
+
+.task-input-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #3c3c3c;
+}
+
+/* Icon for the '+' sign */
+.task-input-icon {
+  font-size: 24px;
+  color: #eee; /* Light color for the icon */
+  margin-right: 10px; /* Space between the icon and input field */
+}
+
+.no-tasks-message{
+  color: #000000;
+}
+
+/* Task Input Field */
+.task-input-field {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #eee;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.task-input-field::placeholder {
+  color: #888;
+}
+
+/* Task List */
+.task-list {
+  margin: 0;
+  padding: 0;
+}
+
+/* Task container adjustments */
+.task-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Task items base styling */
+.task-item,
+.completed-task {
+  background-color: #ffffff;
+  border: none;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  width: 100%; /* Default to full width */
+}
+
+/* Hover effect for non-completed tasks */
+.task-item:hover {
+  background-color: #e2e6ea;
+}
+
+/* Completed task styles */
+.completed-task {
+  background-color: #36ce5a;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.task-description {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.task-time {
+  font-size: 0.8rem;
+  color: #495057;
+  margin-top: 5px;
+  display: block;
+}
+
+.wide-list-item {
+  width: 100%; /* Full width of the container */
+  max-width: 100%; /* Ensure it doesn't exceed container width */
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.task-icon {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.task-icon:hover {
+  color: #000;
+}
+
+/* Profile styles */
+.profile-icon {
+  cursor: pointer;
+  color: #333;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+  color: #007bff;
+}
+
+/* Profile Page Styling */
+.profile-page-container {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 225px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 1001; /* Above other elements */
+}
+
+/* Back Button */
+.back-button {
+  margin-bottom: 10px;
+  font-size: 12px; /* Smaller button text */
+}
+
+/* Modal Styles */
+.modal-body {
+  padding: 30px;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
+button {
+  border-radius: 8px;
+}
+
+/* Dynamic grid layout for task items based on screen size */
+@media (min-width: 768px) {
+  .task-item,
+  .completed-task {
+    width: calc(50% - 15px); /* Two tasks per row on medium screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .task-item,
+  .completed-task {
+    width: calc(33.333% - 15px); /* Three tasks per row on large screens */
+  }
+}
+
+@media (min-width: 1600px) {
+  .task-item,
+  .completed-task {
+    width: calc(25% - 15px); /* Four tasks per row on extra large screens */
+  }
+}
+
+/* Hamburger Menu Button for Mobile */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1100;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-toggle:hover {
+  background-color: #495057;
+}
+
+/* Mobile Responsive Styles */
+/* Tablet Breakpoint */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .task-container {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+}
+
+/* Small Tablet Breakpoint */
+@media (max-width: 768px) {
+  /* Show hamburger menu */
+  .menu-toggle {
+    display: block;
+  }
+  
+  /* Sidebar hidden by default on mobile */
+  .sidebar {
+    transform: translateX(-100%);
+    width: 250px;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Task container takes full width when sidebar is hidden */
+  .task-container {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Sidebar shows extra space at top when active */
+  .sidebar.active h4 {
+    margin-top: 40px;
+  }
+  
+  .task-list-wrapper {
+    margin-top: 50px;
+  }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 576px) {
+  .app-header {
+    font-size: 1.5rem;
+    margin-top: 40px; /* Space for hamburger menu */
+  }
+  
+  /* Adjust profile container for mobile */
+  .profile-container {
+    top: 15px;
+    right: 15px;
+  }
+  
+  /* Make profile page smaller */
+  .profile-page-container {
+    width: 200px;
+    right: 10px;
+  }
+  
+  /* Make search bar more compact */
+  .search-bar {
+    margin: 40px auto 20px;
+  }
+  
+  .search-input {
+    padding: 8px 30px 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  /* Task items smaller padding */
+  .task-item,
+  .completed-task {
+    padding: 15px;
+  }
+  
+  /* Make task description more compact on small screens */
+  .task-description {
+    margin: 5px 0;
+    font-size: 0.85rem;
+  }
+  
+  .task-time {
+    font-size: 0.75rem;
+  }
+}
+
+/* Very Small Mobile Screens */
+@media (max-width: 380px) {
+  .app-header {
+    font-size: 1.2rem;
+  }
+  
+  .task-item,
+  .completed-task {
+    padding: 10px;
+  }
+  
+  .profile-page-container {
+    width: 180px;
+  }
+}
+
+/* For handling sidebar on landscape mobile */
+@media (max-height: 500px) and (max-width: 992px) {
+  .sidebar {
+    overflow-y: auto;
+    height: 100%;
+    padding: 10px;
+  }
+  
+  .sidebar h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .sidebar ul li {
+    padding: 5px 10px;
+    margin: 2px 0;
+  }
+}

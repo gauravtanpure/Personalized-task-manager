@@ -1,0 +1,114 @@
+/* Add these styles to your existing styles.css file */
+
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-icon-container {
+  cursor: pointer;
+}
+
+.profile-icon {
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+  color: #0056b3;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 250px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.profile-dropdown:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.profile-info, .profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-actions button {
+  width: 100%;
+  margin: 5px 0;
+}
+
+/* Alert Box Styling */
+.profile-alert {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 300px;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-left-width: 4px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure the profile icon is positioned correctly in the header */
+.app-header {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-dropdown {
+    width: 220px;
+    right: -10px;
+  }
+  
+  .profile-dropdown:before {
+    right: 25px;
+  }
+  
+  .profile-alert {
+    width: 250px;
+  }
+}
