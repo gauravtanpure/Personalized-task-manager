@@ -14,7 +14,7 @@ const LoginModal = ({ show, onHide, onLogin }) => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post("http://localhost:5000/api/users/login", { email, password });
+      const response = await axios.post("https://task-manager-jdut.onrender.com/api/users/login", { email, password });
       
       // Store the token in localStorage
       localStorage.setItem("token", response.data.token);

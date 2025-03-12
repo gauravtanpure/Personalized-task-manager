@@ -17,7 +17,7 @@ const RegisterModal = ({ show, onHide, onRegister }) => {
     try {
       // Make the registration request
       const response = await axios.post(
-        "http://localhost:5000/api/users/register", 
+        "https://task-manager-jdut.onrender.com/api/users/register", 
         { email, password, name }
       );
       

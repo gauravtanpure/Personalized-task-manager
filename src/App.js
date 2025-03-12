@@ -17,7 +17,7 @@ import {
   FaEdit,
 } from "react-icons/fa";
 
-const API_URL = "http://localhost:5000/api/tasks";
+const API_URL = "https://task-manager-jdut.onrender.com/api/tasks";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
