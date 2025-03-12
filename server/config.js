@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://gaurav:123@task-manager-cluster.pujz9.mongodb.net/?retryWrites=true&w=majority&appName=task-manager-cluster", {
+    await mongoose.connect("mongodb+srv://<username>:<password>@task-manager-cluster.pujz9.mongodb.net/?retryWrites=true&w=majority&appName=task-manager-cluster", {
     });
     console.log("MongoDB Connected...");
   } catch (error) {
