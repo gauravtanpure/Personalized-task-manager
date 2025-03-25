@@ -208,7 +208,7 @@ const App = () => {
 
     if (Array.isArray(tasks)) {
       switch (activeFilter) {
-        case "This Day":
+        case "This Day 24 Hrs":
           filtered = tasks.filter((task) => !task.completed && moment(task.dueDate).isSame(now, "day"));
           break;
         case "This Week":
@@ -298,7 +298,7 @@ const App = () => {
           />
         </div>
 
-        <h2 className="app-header">My Task Manager App</h2>
+        <h2 className="app-header">My Task Manager</h2>
         
         {/* Search Bar */}
         <Form className="search-bar">
