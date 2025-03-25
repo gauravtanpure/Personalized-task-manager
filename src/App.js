@@ -208,7 +208,7 @@ const App = () => {
 
     if (Array.isArray(tasks)) {
       switch (activeFilter) {
-        case "This Day 24 Hrs":
+        case "This Day":
           filtered = tasks.filter((task) => !task.completed && moment(task.dueDate).isSame(now, "day"));
           break;
         case "This Week":
