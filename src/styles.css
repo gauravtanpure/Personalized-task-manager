@@ -231,12 +231,12 @@ html, body {
 }
 
 .task-input-container {
-  position: absolute; /* Relative to task-container */
-  bottom: 20px;
-  left: 50%; /* Center it horizontally */
-  transform: translateX(-50%); /* Center it perfectly */
-  width: 300px; /* Fixed width instead of full width */
-  max-width: calc(100% - 40px); /* Ensure it fits on small screens */
+  position: fixed; /* Change from absolute to fixed */
+  bottom: 20px; /* Maintain consistent bottom spacing */
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 300px;
+  max-width: calc(100% - 40px);
   padding: 10px 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -244,9 +244,23 @@ html, body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
-  z-index: 10; /* Ensure it's above other elements */
-  display: flex; /* Better alignment of icon and text */
+  z-index: 1000; /* Increase z-index to ensure visibility */
+  display: flex;
   align-items: center;
+}
+
+@media (max-height: 600px) {
+  .task-input-container {
+    bottom: 10px; /* Reduce bottom spacing on very small screens */
+    width: 250px; /* Slightly smaller width */
+    padding: 8px 12px; /* Reduce padding */
+  }
+}
+
+/* Ensure the task list wrapper has enough space at the bottom */
+.task-list-wrapper {
+  padding-bottom: 100px; /* Add extra padding at the bottom */
+  margin-bottom: 100px; /* Increase bottom margin */
 }
 
 .task-input-container:hover {
