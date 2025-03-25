@@ -298,7 +298,7 @@ const App = () => {
           />
         </div>
 
-        <h2 className="app-header">My Task Manager</h2>
+        <h2 className="app-header">My Task Manager App</h2>
         
         {/* Search Bar */}
         <Form className="search-bar">
