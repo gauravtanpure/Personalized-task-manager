@@ -138,7 +138,7 @@ html, body {
   margin-top: 20px; /* Add space for profile button */
 }
 
-/* Button Styles */
+/* Button Styles - FIXED FOR MOBILE */
 .add-task-btn {
   position: fixed;
   bottom: 20px;
@@ -152,7 +152,8 @@ html, body {
   border: none;
   border-radius: 5px;
   transition: all 0.3s ease;
-  z-index: 100;
+  z-index: 1200; /* INCREASED Z-INDEX for mobile visibility */
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3); /* Added shadow for better visibility */
 }
 
 .add-task-btn:hover {
@@ -210,6 +211,7 @@ html, body {
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 100px; /* Add extra padding at the bottom */
 }
 
 /* Style the scrollbar */
@@ -255,12 +257,6 @@ html, body {
     width: 250px; /* Slightly smaller width */
     padding: 8px 12px; /* Reduce padding */
   }
-}
-
-/* Ensure the task list wrapper has enough space at the bottom */
-.task-list-wrapper {
-  padding-bottom: 100px; /* Add extra padding at the bottom */
-  margin-bottom: 100px; /* Increase bottom margin */
 }
 
 .task-input-container:hover {
@@ -507,6 +503,22 @@ button {
   
   .task-list-wrapper {
     margin-top: 50px;
+    margin-bottom: 100px; /* INCREASED bottom margin for mobile */
+    padding-bottom: 120px; /* INCREASED bottom padding for mobile */
+  }
+  
+  /* MOBILE SPECIFIC ADD TASK BUTTON FIXES */
+  .add-task-btn {
+    bottom: 15px; /* Slightly reduced for mobile */
+    width: 180px; /* Smaller width for mobile */
+    padding: 12px 16px; /* Better mobile padding */
+    font-size: 1.1rem; /* Slightly smaller font */
+    z-index: 1200; /* Ensure it's above everything */
+    border-radius: 25px; /* More rounded for mobile */
+  }
+  
+  .add-task-btn:hover {
+    transform: translateX(-50%) translateY(-3px); /* Reduced hover effect for mobile */
   }
 }
 
@@ -554,6 +566,25 @@ button {
   .task-time {
     font-size: 0.75rem;
   }
+  
+  /* ENHANCED MOBILE FIXES FOR ADD TASK BUTTON */
+  .add-task-btn {
+    bottom: 12px; /* Reduced for small screens */
+    width: 160px; /* Even smaller width */
+    padding: 10px 14px; /* Compact padding */
+    font-size: 1rem; /* Smaller font size */
+    z-index: 1300; /* Highest z-index for visibility */
+  }
+  
+  .task-list-wrapper {
+    margin-bottom: 90px; /* Adjusted for smaller button */
+    padding-bottom: 100px; /* Extra padding for small screens */
+  }
+  
+  /* Add safe area support for mobile browsers */
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
 }
 
 /* Very Small Mobile Screens */
@@ -569,6 +600,19 @@ button {
   
   .profile-page-container {
     width: 180px;
+  }
+  
+  /* EXTRA SMALL SCREEN ADD TASK BUTTON ADJUSTMENTS */
+  .add-task-btn {
+    width: 140px; /* Very compact width */
+    padding: 8px 12px; /* Minimal padding */
+    font-size: 0.9rem; /* Smaller font */
+    bottom: 10px; /* Minimal bottom spacing */
+  }
+  
+  .task-list-wrapper {
+    margin-bottom: 80px; /* Adjusted for very small button */
+    padding-bottom: 90px;
   }
 }
 
@@ -588,5 +632,52 @@ button {
   .sidebar ul li {
     padding: 5px 10px;
     margin: 2px 0;
+  }
+  
+  /* LANDSCAPE MOBILE SPECIFIC FIXES */
+  .add-task-btn {
+    bottom: 8px; /* Minimal spacing for landscape */
+    width: 140px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    z-index: 1300;
+  }
+  
+  .task-list-wrapper {
+    margin-bottom: 70px;
+    padding-bottom: 80px;
+  }
+}
+
+/* iOS Safari and mobile browser specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari viewport fix */
+  .add-task-btn {
+    bottom: max(12px, env(safe-area-inset-bottom, 12px)); /* Use safe area if available */
+  }
+  
+  /* Ensure proper spacing on iOS with dynamic viewport */
+  @media (max-width: 768px) {
+    .task-list-wrapper {
+      padding-bottom: max(120px, calc(120px + env(safe-area-inset-bottom, 0px)));
+      margin-bottom: max(100px, calc(100px + env(safe-area-inset-bottom, 0px)));
+    }
+  }
+}
+
+/* Additional mobile browser compatibility */
+@media screen and (max-width: 768px) {
+  /* Prevent button from being hidden by browser chrome */
+  .add-task-btn {
+    position: fixed !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Ensure task list doesn't overlap with button */
+  .task-list-wrapper {
+    overflow-y: auto;
+    max-height: calc(100vh - 200px); /* Ensure space for button */
   }
 }
