@@ -666,7 +666,7 @@ button {
 }
 
 /* Additional mobile browser compatibility */
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
   /* Prevent button from being hidden by browser chrome */
   .add-task-btn {
     position: fixed !important;
